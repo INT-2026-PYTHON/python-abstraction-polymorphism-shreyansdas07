@@ -81,3 +81,48 @@ Explanation:
 =================================================
 
 """
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print(f"{self.name} makes a sound")
+
+class Dog(Animal):
+    def speak(self):
+        print(f"{self.name} says Woof")
+
+class Cat(Animal):
+    def speak(self):
+        print(f"{self.name} says Meow")
+
+class Cow(Animal):
+    def speak(self):
+        print(f"{self.name} says Moo")
+animals = [] 
+print("\n--- Start adding animals interactively ---")
+
+while True:
+    animal_type_input = input("Enter animal type (Dog, Cat, Cow), or 'done' to finish: ").strip().lower()
+
+    if animal_type_input == 'done':
+        break
+
+    try:
+        if animal_type_input in ['dog', 'cat', 'cow']:
+            name = input(f"Enter name for the new {animal_type_input.capitalize()}: ")
+            if animal_type_input == 'dog':
+                new_animal = Dog(name)
+            elif animal_type_input == 'cat':
+                new_animal = Cat(name)
+            else: # cow
+                new_animal = Cow(name)
+            animals.append(new_animal)
+            print(f"New {animal_type_input.capitalize()} named {name} added.\n")
+        else:
+            print("Invalid animal type. Please enter \n")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}\n")
+
+for animal in animals:
+    animal.speak()
